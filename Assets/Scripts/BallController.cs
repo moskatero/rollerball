@@ -21,13 +21,13 @@ public class BallController : MonoBehaviour
 		float x = Input.GetAxis ("Horizontal");
 		float z = Input.GetAxis ("Vertical");
 		float y = 0f;
-		if(Input.GetKeyDown("Space"))
+		if(Input.GetKeyDown("space"))
 		{
 			y = jumpSpeed;
 		}
 
 		Vector3 force = new Vector3(x * movSpeed, y * jumSpeed, z * movSpeed);
-		rigidbody.AddForce(force);
+		GetComponent<Rigidbody>().AddForce(force);
 	}
 
 
@@ -35,7 +35,21 @@ public class BallController : MonoBehaviour
 	{
 		movSpeed = val;
 	}
-	
+
+	public void setDrag(float drag)
+	{
+		GetComponent<Rigidbody> ().drag = drag;
+	}
+
+	public void setAngDrag(float drag)
+	{
+		GetComponent<Rigidbody> ().angularDrag = drag;
+	}
+
+	public void setMass(float mass)
+	{
+		GetComponent<Rigidbody> ().mass = mass;
+	}
 }
 
 
