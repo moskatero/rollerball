@@ -8,7 +8,9 @@ public class BallController : MonoBehaviour
 
 	private float movSpeed;
 	private float jumSpeed;
-
+	public bool canJump;
+	Vector3 cameraF;
+	Vector3 cameraR;
 
 	void Start ()
 	{
@@ -18,16 +20,34 @@ public class BallController : MonoBehaviour
 
 	void Update ()
 	{
-		float x = Input.GetAxis ("Horizontal");
-		float z = Input.GetAxis ("Vertical");
+		cameraF = Camera.main.transform.forward;
+		cameraR = Camera.main.transform.right;
+
+
+		float x = 0f;
+		float z = 0f;
 		float y = 0f;
+
+		x = Input.GetAxis ("Horizontal");
+		z = Input.GetAxis ("Vertical");
+
+		if(Input.GetKeyDown("space") && canJump)
+		{
+			cameraF.y = jumpSpeed;
+			canJump=false;
+		}
 		if(Input.GetKeyDown("space"))
 		{
-			y = jumpSpeed;
+			cameraF.x =0;
+		}
+		if(z == 0 )
+		{
+			cameraR.z =0;
 		}
 
-		Vector3 force = new Vector3(x * movSpeed, y * jumSpeed, z * movSpeed);
-		GetComponent<Rigidbody>().AddForce(force);
+
+
+		GetComponent<Rigidbody>().AddForce ( cameraF.x * movSpeed, cameraF.y * jumSpeed, cameraR.z * movSpeed);
 	}
 
 

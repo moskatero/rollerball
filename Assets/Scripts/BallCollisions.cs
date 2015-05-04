@@ -35,6 +35,10 @@ public class BallCollisions : MonoBehaviour {
 
 	void OnTriggerEnter (Collider col)  
 	{
+		if(col.tag == "Terrain")
+		{
+			ballController.canJump = true;
+		}
 
 		if(col.tag == "FireCoin")
 		{

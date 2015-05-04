@@ -14,18 +14,6 @@ public class FollowCamera : MonoBehaviour
 
 	void Update ()
 	{
-
-
-
-		var relativePos = transform.position - (target.transform.position);
-		RaycastHit hit;
-		if (Physics.Raycast (target.transform.position, relativePos,out hit, angle+0.5f)) 
-		{
-			Vector3 rot =  new Vector3(45f,0f,0f);
-			target.transform.Rotate(rot);
-		}else
-		{
-			transform.position = target.transform.position + offset;
-		}
+		transform.position = target.transform.position + offset;
 	}
 }
